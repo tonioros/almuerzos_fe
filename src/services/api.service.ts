@@ -20,4 +20,20 @@ export class ApiService {
     });
   }
 
+  public getOrders(
+    status?: string,
+    fcm_token?: string,
+    orderBy?: string,
+    limit?: number,
+    withRecipe?: boolean,
+  ) {
+    let url = `order?`
+    url += (status && status != "") ? `status=${status}&` : "";
+    url += (fcm_token && fcm_token != "") ? `fcm_token=${fcm_token}&` : "";
+    url += (orderBy && orderBy != "") ? `orderBy=${orderBy}&` : "";
+    url += (limit) ? `limit=${limit}` : "";
+    url += (withRecipe) ? `withRecipe=${withRecipe}` : "";
+    return this.httpClient.get<OrderModel[]>(`${this.ALMUERZO_API_URL}/${url}}`);
+  }
+
 }

@@ -1,12 +1,36 @@
 <div class="container">
   <div class="row justify-content-center justify-content-md-start">
-    <div class="col-12">
-      <h2 class="text-dark">Bienvenido</h2>
-      <h4 class="text-black-50">¡Espero te encuentres bien!</h4>
-      <h5 class="fw-normal text-black-50">¿Deséas solicitar un almuerzo?</h5>
+    <div class="col-12 mt-4">
+      <h3 class="text-dark">Bienvenido</h3>
+      <h6 class="text-black-50">¡Espero te encuentres bien!</h6>
+      <h6 class="fw-normal text-black-50">¿Deséas solicitar un almuerzo?</h6>
     </div>
     <div class="col-11 col-md-4 col-lg-3 mt-2">
-      <button mat-raised-button class="w-100 btn-primary" (click)="requestLunch()">Solicitar almuerzo</button>
+      <button [disabled]="isSendingOrder" mat-raised-button class="w-100 btn-primary" (click)="requestLunch()">
+        <mat-icon *ngIf="isSendingOrder" class="rotate">hourglass_top</mat-icon>
+        <span *ngIf="!isSendingOrder">Solicitar almuerzo</span>
+      </button>
     </div>
   </div>
+  <div class="row justify-content-center justify-content-md-start">
+    <div class="col-md-6 col-11" *ngIf="orderList && orderList.length > 0">
+      <mat-list role="list" *ngFor="let order of orderList" class="my-2">
+        <mat-card class="mt-2">
+          <div class="row justify-content-around">
+            <div class="col-8 ps-3">
+              <p class="text-dark m-1 p-0">Tu almuerzo selecionado es:</p>
+              <h5>{{ order.recipe.name }}</h5>
+              <p class="text-black-50 fw-light m-1 p-0">Tiempo aprox de entrega
+                es: {{ (order.recipe.avg_preparation_time) }} segs</p>
+              <p class="text-black-50 fw-light m-1 p-0">Fecha/Hora solicitado: {{ order.request_date | date }}</p>
+            </div>
+            <div class="col-4 card-lunch-image" style="background-image: url('{{order.recipe.url_image}}')">
+            </div>
+          </div>
+        </mat-card>
+      </mat-list>
+    </div>
+
+  </div>
+
 </div>

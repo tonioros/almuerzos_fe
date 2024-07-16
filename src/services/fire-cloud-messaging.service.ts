@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
 import {environment} from "../environments/environment";
 import {deleteToken, getToken, Messaging} from "@angular/fire/messaging";
-import {onMessage} from "firebase/messaging";
+import {MessagePayload, onMessage} from "firebase/messaging";
+import {Observer} from "rxjs";
 
 
 @Injectable({
@@ -43,23 +44,8 @@ export class FireCloudMessagingService {
       });
   }
 
-
-  getDeviceToken() {
-    return getToken(this.msg, {vapidKey: environment.FCMvapidKey})
-      .then((token) => {
-        console.log(token);
-        // save the token in the server, or do whathever you want
-        return token;
-      })
-      .catch((error) => console.log('Token error', error));
-  }
-
-  onMessage(): void {
-    onMessage(this.msg, {
-      next: (payload) => console.log('Message', payload),
-      error: (error) => console.log('Message error', error),
-      complete: () => console.log('Done listening to messages'),
-    });
+  onMessage(callback: Observer<MessagePayload>): void {
+    onMessage(this.msg, callback);
   }
 
   async deleteToken() {
