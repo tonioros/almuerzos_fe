@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-12 col-md-7">
+      <h3 class="text-dark">Recetas</h3>
+      <p class="fw-normal text-black-50">Las recetas disponibles para servir las puedes encontrar aca, ademas de mostrar
+        los ingredientes que utilizara cada una de nuestras preparaciones</p>
+    </div>
+    <div class="row position-relative">
+      <ng-lottie
+        *ngIf="isLoading"
+        [options]="options"
+        class="m-auto d-block position-absolute loading-animation"
+        width="150px"
+        height="150px"/>
+    </div>
+    <div class="border-bottom col-12 col-md-8 col-md-6 mt-3 row" *ngFor="let recipe of rowData">
+      <div class=" col-8">
+        <h5>{{ recipe.name }}</h5>
+        <p class="m-0 py-1 fw-light">ID: {{ recipe.id }}</p>
+        <p class="m-0 py-1">Tiempo promerio de preparacion: {{ recipe.avg_preparation_time }} segs</p>
+        <p class="m-0 py-1 fw-bold">Ingredientes: </p>
+        <ul>
+          <li *ngFor="let ingre of recipe.ingredients">{{ ingre.total_to_use + " " + ingre.ingredient }}</li>
+        </ul>
+      </div>
+      <div class=" col-4">
+        <img [src]="recipe.url_image" alt="Imagen para {{recipe.name}}" class="w-75 rounded-2"/>
+      </div>
+    </div>
+  </div>
+</div>

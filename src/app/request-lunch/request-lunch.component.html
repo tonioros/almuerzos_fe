@@ -6,7 +6,7 @@
       <h6 class="fw-normal text-black-50">¿Deséas solicitar un almuerzo?</h6>
     </div>
     <div class="col-11 col-md-4 col-lg-3 mt-2">
-      <button [disabled]="isSendingOrder" mat-raised-button class="w-100 btn-primary" (click)="requestLunch()">
+      <button [disabled]="isSendingOrder" mat-raised-button class="w-100 btn-primary bg-primary text-white" (click)="requestLunch()">
         <mat-icon *ngIf="isSendingOrder" class="rotate">hourglass_top</mat-icon>
         <span *ngIf="!isSendingOrder">Solicitar almuerzo</span>
       </button>
@@ -17,7 +17,7 @@
   </div>
   <p *ngIf="completedOrderList && completedOrderList.length > 0" class="fs-5 mt-3 mb-0">Ordenes completadas: </p>
   <div class="row justify-content-center justify-content-md-start">
-    <div class="col-md-6 col-11" *ngIf="completedOrderList && completedOrderList.length > 0">
+    <div class="col-lg-6 col-md-8 col-11" *ngIf="completedOrderList && completedOrderList.length > 0">
       <mat-list role="list" *ngFor="let order of completedOrderList" class="my-2">
         <app-card-lunch [order]="order"></app-card-lunch>
       </mat-list>
@@ -26,7 +26,7 @@
 
   <p *ngIf="pendingOrderList && pendingOrderList.length > 0" class="fs-5 mt-3 mb-0">Ordenes pendientes: </p>
   <div class="row justify-content-center justify-content-md-start">
-    <div class="col-md-6 col-11" *ngIf="pendingOrderList && pendingOrderList.length > 0">
+    <div class="col-lg-6 col-md-8 col-11" *ngIf="pendingOrderList && pendingOrderList.length > 0">
       <mat-list role="list" *ngFor="let order of pendingOrderList" class="my-1">
         <app-card-lunch [order]="order"></app-card-lunch>
       </mat-list>
@@ -36,7 +36,7 @@
 
   <div class="row justify-content-center justify-content-md-start" *ngIf="showMore">
     <div class="col-11 col-md-5 col-lg-4">
-      <button mat-raised-button class="w-100 btn-primary" (click)="router.navigate(['/orders'])">
+      <button mat-raised-button class="w-100 btn-primary bg-success text-white" (click)="router.navigate(['/orders'])">
         Ver más
       </button>
     </div>

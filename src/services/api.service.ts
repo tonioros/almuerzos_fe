@@ -42,9 +42,9 @@ export class ApiService {
   }
 
   public getAvailableIngredientsFromWarehouse(name?: string,
-                                 orderBy?: string,
-                                 limit?: number,) {
-    let url = `/ingredients?`
+                                              orderBy?: string,
+                                              limit?: number,) {
+    let url = `ingredients?`
     url += (name) ? `name=${name}&` : "";
     url += (limit) ? `limit=${limit}&` : "";
     url += (orderBy && orderBy != "") ? `orderBy=${orderBy}&` : "";
@@ -55,7 +55,7 @@ export class ApiService {
   public getMarketPurchaseHistory(requestDate?: string,
                                   orderBy?: string,
                                   limit?: number,) {
-    let url = `/market-purchase?`
+    let url = `market-purchase?`
     url += (requestDate) ? `request_date=${requestDate}&` : "";
     url += (limit) ? `limit=${limit}&` : "";
     url += (orderBy && orderBy != "") ? `orderBy=${orderBy}&` : "";
@@ -65,11 +65,11 @@ export class ApiService {
   public getRecipes(withIngredientes?: boolean,
                     orderBy?: string,
                     limit?: number,) {
-    let url = `/recipe?`
+    let url = `recipe?`
     url += (limit) ? `limit=${limit}&` : "";
     url += (orderBy && orderBy != "") ? `orderBy=${orderBy}&` : "";
     url += (withIngredientes) ? `withIngredientes=${withIngredientes}` : "";
-    return this.httpClient.get<RecipeModel[]>(`${this.BODEGA_API_URL}/${url}}`);
+    return this.httpClient.get<RecipeModel[]>(`${this.ALMUERZO_API_URL}/${url}}`);
   }
 
 }

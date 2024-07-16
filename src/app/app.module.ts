@@ -24,13 +24,15 @@ import {OrdersListComponent} from './orders-list/orders-list.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {LottieComponent, provideLottieOptions} from "ngx-lottie";
 import player from 'lottie-web';
+import {RecipeListComponent} from "./recipe-list/recipe-list.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     RequestLunchComponent,
     CardLunchComponent,
-    OrdersListComponent
+    OrdersListComponent,
+    RecipeListComponent
   ],
   imports: [
     BrowserModule,
