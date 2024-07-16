@@ -1,3 +1,5 @@
+import {IngredientWarehouseModel} from "./ingredient-warehouse.model";
+
 export interface MarketPurchaseModel {
   id: number;
   request_date: string;
@@ -5,4 +7,5 @@ export interface MarketPurchaseModel {
   total_purchased: number;
   created_at: string;
   updated_at: string;
+  ingredient: IngredientWarehouseModel;
 }

@@ -54,10 +54,12 @@ export class ApiService {
 
   public getMarketPurchaseHistory(requestDate?: string,
                                   orderBy?: string,
+                                  withIngredients?: boolean,
                                   limit?: number,) {
     let url = `market-purchase?`
     url += (requestDate) ? `request_date=${requestDate}&` : "";
     url += (limit) ? `limit=${limit}&` : "";
+    url += (withIngredients) ? `withIngredients=${withIngredients}&` : "";
     url += (orderBy && orderBy != "") ? `orderBy=${orderBy}&` : "";
     return this.httpClient.get<MarketPurchaseModel[]>(`${this.BODEGA_API_URL}/${url}}`);
   }

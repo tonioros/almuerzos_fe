@@ -25,6 +25,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {LottieComponent, provideLottieOptions} from "ngx-lottie";
 import player from 'lottie-web';
 import {RecipeListComponent} from "./recipe-list/recipe-list.component";
+import { MarketPurchasesHistoryComponent } from './market-purchases-history/market-purchases-history.component';
+import { IngredientsWarehouseListComponent } from './ingredients-warehouse-list/ingredients-warehouse-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import {RecipeListComponent} from "./recipe-list/recipe-list.component";
     RequestLunchComponent,
     CardLunchComponent,
     OrdersListComponent,
-    RecipeListComponent
+    RecipeListComponent,
+    MarketPurchasesHistoryComponent,
+    IngredientsWarehouseListComponent
   ],
   imports: [
     BrowserModule,
