@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-7">
+      <h3 class="text-dark">Compras de ingredientes</h3>
+      <h6 class="text-black-50">Todos los ingredientes vienen de un lugar magico...</h6>
+      <p class="fw-normal text-black-50">Puedes ver el historial de compras (llamadas) de ingredientes, horario de
+        compra (solicitud) y la cantidad comprada</p>
+    </div>
+    <div class="col-12 col-md-11 mt-3">
+      <ag-grid-angular
+        style="width: 100%; height: 450px;"
+        class="ag-theme-material"
+        [class.opacity-25]="isLoading"
+        [rowData]="rowData"
+        [columnDefs]="colDefs"
+      />
+      <ng-lottie
+        *ngIf="isLoading"
+        [options]="options"
+        class="m-auto d-block position-absolute loading-animation"
+        width="150px"
+        height="150px"/>
+    </div>
+  </div>
+</div>
