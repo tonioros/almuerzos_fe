@@ -1,0 +1,26 @@
+.sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+}
+
+.menu-toggle:hover {
+  background: #c7c7c7;
+  border-radius: 5px;
+  transition: 500ms;
+}
+
+.breadcrumb {
+  margin-top: 2px;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  color: darkslategray;
+  display: inline-flex;
+}
+.dashboard-toolbar {
+  height: 7vh;
+}
