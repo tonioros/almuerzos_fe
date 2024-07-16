@@ -38,7 +38,6 @@ export class ApiService {
     url += (orderBy && orderBy != "") ? `orderBy=${orderBy}&` : "";
     url += (limit) ? `limit=${limit}&` : "";
     url += (withRecipe) ? `withRecipe=${withRecipe}` : "";
-    console.log(`${this.ALMUERZO_API_URL}/${url}}`)
     return this.httpClient.get<OrderModel[]>(`${this.ALMUERZO_API_URL}/${url}}`);
   }
 

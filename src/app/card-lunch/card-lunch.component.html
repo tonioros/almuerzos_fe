@@ -1,15 +1,22 @@
-<mat-card class="mt-2">
+<mat-card class="mt-2 {{className}}">
   <div class="row justify-content-around">
     <div class="col-8 ps-3">
-      <p class="text-dark m-1 p-0">Tu almuerzo selecionado es:</p>
-      <h5>{{ order?.recipe?.name }}</h5>
-      <p class="text-black-50 fw-light m-1 p-0">Tiempo aprox de entrega
-        es: {{ order?.recipe?.avg_preparation_time }} segs</p>
-      <p class="text-black-50 fw-light m-1 p-0">Fecha/Hora solicitado: {{ order?.request_date | date }}</p>
-      <p [class]="'text-black-50 m-1 p-0 fw-light '+ stateTextStatus(order?.status || '').class">
-        Estado: {{ stateTextStatus(order?.status || '').text }}</p>
+      <p class="text-dark m-1 p-0">{{
+          _order?.status === 'pending' ?
+            "Tu almuerzo selecionado es:" :
+            "Tu almuerzo esta listo:"
+        }}</p>
+      <h5>{{ _order?.recipe?.name }}</h5>
+      <p *ngIf="_order?.status == 'pending'" class="text-black-50 fw-light m-1 p-0">Tiempo aprox de entrega
+        es: {{ _order?.recipe?.avg_preparation_time }} segs</p>
+      <p class="text-black-50 fw-light m-1 p-0" *ngIf="_order?.status == 'pending'">Fecha/Hora
+        solicitado: {{ _order?.request_date | date }}</p>
+      <p class="text-black-50 fw-light m-1 p-0" *ngIf="_order?.status == 'completed'">Fecha/Hora
+        completado: {{ _order?.delivery_date | date }}</p>
+      <p [class]="'m-1 p-0 '+ stateTextStatus(_order?.status || '').class">
+        Estado: {{ stateTextStatus(_order?.status || '').text }}</p>
     </div>
-    <div class="col-4 card-lunch-image" style="background-image: url('{{order?.recipe?.url_image || ''}}')">
+    <div class="col-4 card-lunch-image" style="background-image: url('{{_order?.recipe?.url_image || ''}}')">
     </div>
   </div>
 </mat-card>

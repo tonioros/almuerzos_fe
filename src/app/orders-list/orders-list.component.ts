@@ -17,7 +17,7 @@ export class OrdersListComponent implements OnInit {
     {
       headerName: '#',
       field: "id",
-      maxWidth: 70
+      maxWidth: 100
     },
     {
       headerName: 'Platillo',
@@ -68,7 +68,6 @@ export class OrdersListComponent implements OnInit {
   }
 
   getOrderStatus(status: string) {
-    // @ts-ignore
     return OrderStatus[status];
   }
 

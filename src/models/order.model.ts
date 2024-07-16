@@ -3,6 +3,7 @@ import {RecipeModel} from "./recipe.model";
 export interface OrderModel {
   fcm_token: string;
   request_date: string;
+  delivery_date: string;
   recipe_id: number;
   status: string;
   updated_at: string;

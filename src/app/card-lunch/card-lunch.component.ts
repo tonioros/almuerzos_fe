@@ -8,11 +8,19 @@ import {OrderStatus} from "../../constants/order-status";
   styleUrl: './card-lunch.component.scss'
 })
 export class CardLunchComponent {
-  @Input() order?: OrderModel;
+  className = "";
+  interval: any;
+  opacity: number = 25;
+
+  _order?: OrderModel;
+
+  @Input() set order(v: OrderModel) {
+    this._order = v;
+  }
 
   stateTextStatus(status: string) {
-    // @ts-ignore
     return OrderStatus[status];
   }
+
 
 }
