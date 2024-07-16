@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "start-prod": "ng serve  --configuration production",
+    "build": "ng build --aot --optimization --named-chunks",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -22,8 +23,10 @@
     "@angular/platform-browser-dynamic": "^18.1.0",
     "@angular/router": "^18.1.0",
     "@popperjs/core": "^2.11.8",
+    "ag-grid-angular": "^32.0.2",
     "bootstrap": "^5.3.3",
     "firebase": "^10.12.3",
+    "ngx-lottie": "^12.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

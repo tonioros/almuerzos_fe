@@ -17,12 +17,20 @@ import {provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {getMessaging, provideMessaging} from '@angular/fire/messaging';
 import {environment} from "../environments/environment";
-import {MatCard, MatCardModule} from "@angular/material/card";
+import {MatCardModule} from "@angular/material/card";
+import {CardLunchComponent} from './card-lunch/card-lunch.component';
+import {AgGridAngular} from "ag-grid-angular";
+import {OrdersListComponent} from './orders-list/orders-list.component';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {LottieComponent, provideLottieOptions} from "ngx-lottie";
+import player from 'lottie-web';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RequestLunchComponent
+    RequestLunchComponent,
+    CardLunchComponent,
+    OrdersListComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +50,9 @@ import {MatCard, MatCardModule} from "@angular/material/card";
     MatSuffix,
     MatListModule,
     MatCardModule,
+    AgGridAngular,
+    MatButtonToggleModule,
+    LottieComponent,
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -49,6 +60,9 @@ import {MatCard, MatCardModule} from "@angular/material/card";
     provideHttpClient(withInterceptorsFromDi()),
     provideFirebaseApp(() => initializeApp(environment.FIREBASE_CONFIG)),
     provideMessaging(() => getMessaging()),
+    provideLottieOptions({
+      player: () => player,
+    }),
   ]
 })
 export class AppModule {

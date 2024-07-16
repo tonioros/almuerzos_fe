@@ -15,22 +15,16 @@
   <div class="row justify-content-center justify-content-md-start">
     <div class="col-md-6 col-11" *ngIf="orderList && orderList.length > 0">
       <mat-list role="list" *ngFor="let order of orderList" class="my-2">
-        <mat-card class="mt-2">
-          <div class="row justify-content-around">
-            <div class="col-8 ps-3">
-              <p class="text-dark m-1 p-0">Tu almuerzo selecionado es:</p>
-              <h5>{{ order.recipe.name }}</h5>
-              <p class="text-black-50 fw-light m-1 p-0">Tiempo aprox de entrega
-                es: {{ (order.recipe.avg_preparation_time) }} segs</p>
-              <p class="text-black-50 fw-light m-1 p-0">Fecha/Hora solicitado: {{ order.request_date | date }}</p>
-            </div>
-            <div class="col-4 card-lunch-image" style="background-image: url('{{order.recipe.url_image}}')">
-            </div>
-          </div>
-        </mat-card>
+        <app-card-lunch [order]="order"></app-card-lunch>
       </mat-list>
     </div>
-
+  </div>
+  <div class="row justify-content-center justify-content-md-start" *ngIf="showMore">
+    <div class="col-11 col-md-5 col-lg-4">
+      <button mat-raised-button class="w-100 btn-primary" (click)="requestLunch()">
+        Ver más
+      </button>
+    </div>
   </div>
 
 </div>

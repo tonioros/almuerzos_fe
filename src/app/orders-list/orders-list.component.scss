@@ -1,0 +1,22 @@
+mat-button-toggle-group {
+  flex-wrap: wrap;
+}
+
+.loading-animation {
+  top: 500px;
+  left: 100px;
+}
+
+@media (min-width: 768px) {
+  .loading-animation {
+    top: 400px;
+    left: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+  .loading-animation {
+    top: 400px;
+    left: 500px;
+  }
+}

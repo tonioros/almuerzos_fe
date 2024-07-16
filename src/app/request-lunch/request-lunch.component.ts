@@ -14,28 +14,28 @@ export class RequestLunchComponent implements AfterViewInit {
 
   isSendingOrder = false;
   orderList: OrderModel[] = [];
+  showMore: boolean = false;
 
   ngAfterViewInit(): void {
     this.loadOrders();
   }
 
 
-  requestLunch() {
-    this.fcmService.requestNotificationPermission().then(notificationPermissions => {
-      if (notificationPermissions === "granted") {
-        this.fcmService.generateFCMToken().then(fcmToken => {
-          if (fcmToken) {
-            localStorage.setItem("fcmToken", fcmToken);
-            this.sendRequest(fcmToken)
-          } else {
-            console.log("FCM Empty!!");
-          }
-        })
-      }
-      if (notificationPermissions === "denied") {
-        console.log("Denied");
-      }
-    });
+  async requestLunch() {
+    const notificationPermissions = await this.fcmService.requestNotificationPermission();
+    if (notificationPermissions === "granted") {
+      this.fcmService.generateFCMToken().then(fcmToken => {
+        if (fcmToken) {
+          localStorage.setItem("fcmToken", fcmToken);
+          this.sendRequest(fcmToken)
+        } else {
+          console.log("FCM Empty!!");
+        }
+      });
+    }
+    if (notificationPermissions === "denied") {
+      console.log("Denied");
+    }
   }
 
   loadOrders() {
@@ -45,10 +45,15 @@ export class RequestLunchComponent implements AfterViewInit {
         'pending',
         fcmToken,
         'desc',
-        5
+        6,
+        true
       )
       .subscribe({
         next: orderList => {
+          this.showMore = orderList.length > 5
+          if (this.showMore) {
+            orderList = orderList.slice(0, 4);
+          }
           this.orderList = orderList;
         }
       });

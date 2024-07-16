@@ -1,8 +1,7 @@
 import {Injectable} from "@angular/core";
-import {environment} from "../environments/environment";
-import {deleteToken, getToken, Messaging} from "@angular/fire/messaging";
-import {MessagePayload, onMessage} from "firebase/messaging";
+import {deleteToken, getToken, MessagePayload, Messaging, onMessage} from "@angular/fire/messaging";
 import {Observer} from "rxjs";
+import {environment} from "../environments/environment";
 
 
 @Injectable({
@@ -26,22 +25,15 @@ export class FireCloudMessagingService {
       });
   }
 
-  generateFCMToken() {
-    this.requestNotificationPermission();
-    return navigator.serviceWorker
-      .register("./firebase-messaging-sw.js", {
-        type: "module",
-      })
-      .then((serviceWorkerRegistration) => {
-        return getToken(this.msg, {
-          vapidKey: environment.FCMvapidKey,
-          serviceWorkerRegistration: serviceWorkerRegistration,
-        }).then((fcmToken) => {
-          console.log('my fcm token', fcmToken);
-          // This is a good place to then store it on your database for each user
-          return fcmToken;
-        });
-      });
+  async generateFCMToken() {
+    await this.requestNotificationPermission();
+    const serviceWorkerRegistration = await navigator.serviceWorker.register("./firebase-messaging-sw.js", {
+      type: "module",
+    });
+    return getToken(this.msg, {
+      vapidKey: environment.FCMvapidKey,
+      serviceWorkerRegistration: serviceWorkerRegistration,
+    });
   }
 
   onMessage(callback: Observer<MessagePayload>): void {
