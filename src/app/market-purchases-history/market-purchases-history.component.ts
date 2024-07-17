@@ -26,7 +26,7 @@ export class MarketPurchasesHistoryComponent implements OnInit {
       field: "request_date",
       minWidth: 300,
       valueGetter: params =>
-        (new Date(params.data.request_date)
+        (new Date(params.data.request_date + "+00:00")
           .toLocaleString('es-MX', {timeZoneName: 'short'})),
 
       headerName: "Fecha/Hora solicitado",

@@ -24,8 +24,12 @@ export class RequestLunchComponent implements AfterViewInit {
     this.loadOrders();
   }
 
+  async getNotificationPermissions() {
+    return await this.fcmService.requestNotificationPermission();
+  }
+
   async requestLunch() {
-    const notificationPermissions = await this.fcmService.requestNotificationPermission();
+    const notificationPermissions = await this.getNotificationPermissions();
     if (notificationPermissions === "granted") {
       this.fcmService.generateFCMToken().then(fcmToken => {
         if (fcmToken) {
@@ -48,16 +52,16 @@ export class RequestLunchComponent implements AfterViewInit {
         undefined,
         fcmToken,
         'desc',
-        6,
+        5,
         true
       )
       .subscribe({
         next: orderList => {
-          this.showMore = orderList.length > 5
+          this.showMore = orderList.length > 4
           if (this.showMore) {
-            orderList = orderList.slice(0, 5);
+            orderList = orderList.slice(0, 4);
           }
-          this.pendingOrderList = orderList.filter(o => o.status === "pending");
+          this.pendingOrderList = orderList.filter(o => o.status === "pending" || o.status === "cooking");
           this.completedOrderList = orderList.filter(o => o.status === "completed");
         }
       });
@@ -115,4 +119,5 @@ export class RequestLunchComponent implements AfterViewInit {
     this.cdr.detectChanges();
   }
 
+  protected readonly Notification = Notification;
 }

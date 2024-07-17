@@ -36,7 +36,7 @@ export class OrdersListComponent implements OnInit {
     {
       field: "request_date",
       valueGetter: params =>
-        (new Date(params.data.request_date)
+        (new Date(params.data.request_date + "+00:00")
           .toLocaleString('es-MX', {timeZoneName: 'short'})),
 
       headerName: "Fecha/Hora solicitado",
@@ -44,7 +44,7 @@ export class OrdersListComponent implements OnInit {
     {
       field: "delivery_date",
       valueGetter: params =>
-        (new Date(params.data.delivery_date)
+        (new Date(params.data.delivery_date + "+00:00")
           .toLocaleString('es-MX', {timeZoneName: 'short'})),
 
       headerName: "Fecha/Hora entrega",
@@ -60,6 +60,7 @@ export class OrdersListComponent implements OnInit {
     path: '/loading.json',
   };
   isLoading = false;
+
   constructor(private apiService: ApiService) {
   }
 
