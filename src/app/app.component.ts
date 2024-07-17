@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {MatDrawerMode} from "@angular/material/sidenav";
+import {Component} from '@angular/core';
+import {MatDrawerMode, MatSidenav} from "@angular/material/sidenav";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,15 @@ export class AppComponent {
   title = 'almuerzos-gratis';
   mode?: MatDrawerMode;
 
+  constructor(private router: Router) {
+  }
+
   showInfo(link: any) {
 
+  }
+
+  goTo(s: string, drawer: MatSidenav) {
+    drawer.close();
+    this.router.navigate([s]);
   }
 }
