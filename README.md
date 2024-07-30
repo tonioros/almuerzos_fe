@@ -1,6 +1,6 @@
 # AlmuerzosGratis
 
-Proyecto hecho en Angular como prueba tecnica para Alegra
+Proyecto hecho en Angular como ejercicio para implementacion de micro servicios en GCP.
 
 Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
 
